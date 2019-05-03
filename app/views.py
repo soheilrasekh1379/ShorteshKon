@@ -23,5 +23,8 @@ class HomeView(View):
 
 class RedirectUrlView(View):
     def get(self,request,id):
-        url = shortUrl.objects.get(url=id).realurl_set.first().url
+        shorturl = shortUrl.objects.get(url=id)
+        shorturl.num_of_visits +=1
+        shorturl.save()
+        url = shorturl.realurl_set.first().url
         return redirect(url)
