@@ -13,7 +13,7 @@ class shortUrl(models.Model):
 
 
 class realUrl(models.Model):
-    url         = models.CharField(max_length=300)
+    url         = models.CharField(max_length=300,null=False,blank=False)
     timestamp   = models.DateTimeField(auto_now_add=True)
     shorturl     = models.ForeignKey(shortUrl,on_delete=models.CASCADE,null=True,blank=True)
 

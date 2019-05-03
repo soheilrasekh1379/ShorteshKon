@@ -13,11 +13,13 @@ class HomeView(View):
 
     def post(self,request):
         form = realUrlForm(request.POST)
+        data ={}
         if form.is_valid():
             form.save()
             shorturl = form.instance.shorturl.url
             data = {'shorturl':shorturl}
-            return render(request,self.template_name,data)
+        data["form"] = form
+        return render(request,self.template_name,data)
 
 
 
